@@ -1,0 +1,294 @@
+:root {
+    --bg-color: #0c0c0c;
+    --section-bg: #111;
+    --border-color: #222;
+    --text-dim: #888;
+}
+
+/* Default / White Theme */
+body, body[data-theme="white"] {
+    --primary-color: #FFFFFF;
+    --primary-shadow: rgba(255, 255, 255, 0.2);
+    --primary-faint: rgba(255, 255, 255, 0.05);
+    --primary-light: rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="amber"] {
+    --primary-color: #FFB000;
+    --primary-shadow: rgba(255, 176, 0, 0.2);
+    --primary-faint: rgba(255, 176, 0, 0.05);
+    --primary-light: rgba(255, 176, 0, 0.1);
+}
+
+body[data-theme="green"] {
+    --primary-color: #4AF626;
+    --primary-shadow: rgba(74, 246, 38, 0.2);
+    --primary-faint: rgba(74, 246, 38, 0.05);
+    --primary-light: rgba(74, 246, 38, 0.1);
+}
+
+body[data-theme="cyan"] {
+    --primary-color: #00F2FF;
+    --primary-shadow: rgba(0, 242, 255, 0.2);
+    --primary-faint: rgba(0, 242, 255, 0.05);
+    --primary-light: rgba(0, 242, 255, 0.1);
+}
+
+body[data-theme="purple"] {
+    --primary-color: #D33682;
+    --primary-shadow: rgba(211, 54, 130, 0.2);
+    --primary-faint: rgba(211, 54, 130, 0.05);
+    --primary-light: rgba(211, 54, 130, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    margin: 0;
+    line-height: 1.8; /* Increased for better readability of monospace font */
+    letter-spacing: 0.5px; /* Added slight spacing for clarity */
+    transition: color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transition: border-color 0.3s ease;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    margin-right: 20px;
+    object-fit: cover;
+    transition: border-color 0.3s ease;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: var(--primary-color);
+    /* Removed opacity: 0.8 to ensure full contrast for accessibility */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin: 30px 0 15px;
+    transition: color 0.3s ease;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    transition: all 0.2s;
+    outline-offset: 4px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    background: var(--primary-faint);
+}
+
+a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+.section {
+    margin-bottom: 20px;
+    background: var(--section-bg);
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    height: fit-content;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.section:hover, .section.focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-shadow);
+    outline: none;
+}
+
+.section.focused {
+    background: #1a1a1a;
+}
+
+.project-item.sub-focused {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 10px;
+    background: var(--primary-light);
+}
+
+.section p {
+    margin: 0 0 15px 0;
+}
+
+.section p:last-child {
+    margin-bottom: 0;
+}
+
+ul {
+    list-style-type: "[*] ";
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.btn, .back-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.theme-dropdown {
+    background: #000;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 2px 5px;
+    font-family: inherit;
+    font-size: 0.8em;
+    cursor: pointer;
+    outline: none;
+    margin-left: 5px;
+}
+
+.theme-dropdown option {
+    background: #000;
+    color: var(--primary-color);
+}
+
+.back-btn {
+    margin-bottom: 20px;
+}
+
+.btn:hover, .back-btn:hover, #theme-switch:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+#status {
+    margin-bottom: 20px;
+    font-style: italic;
+    color: var(--text-dim);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.skill-tag {
+    display: inline-block;
+    border: 1px solid var(--primary-color);
+    padding: 4px 10px;
+    margin: 3px;
+    font-size: 0.75em;
+    border-radius: 3px;
+    background: var(--primary-faint);
+    transition: all 0.2s;
+}
+
+.skill-tag:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.hint {
+    font-size: 0.8em;
+    color: var(--text-dim);
+    margin-top: 10px;
+    display: block;
+}
+
+#dashboard-view {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    header > div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-pic {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-info {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #dashboard-view {
+        grid-template-columns: 1fr;
+    }
+
+    .btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+}
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    .section {
+        background: white !important;
+        border: 1px solid #ccc !important;
+        color: black !important;
+    }
+    .btn, .back-btn, .hint, .status, .skill-tag {
+        display: none !important;
+    }
+    a {
+        color: black !important;
+        text-decoration: underline !important;
+    }
+}
