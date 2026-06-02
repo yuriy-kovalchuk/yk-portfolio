@@ -1,57 +1,63 @@
 const PORTFOLIO_CONTENT = {
     PROFILE_PICTURE: "assets/me.jpeg",
     PROFILE_NAME: "Yuriy Kovalchuk",
-    PROFILE_TITLE: "DevOps / Platform Engineer who sometimes code",
+    PROFILE_TITLE: "Platform Engineer. Occasionally writes Go.",
     GITHUB_LINK: "https://github.com/yuriy-kovalchuk",
     LINKEDIN_LINK: "https://www.linkedin.com/in/yuriy-kovalchuk/",
-    BIO: `I build platforms, automate things, and occasionally pretend I’m a software developer. Big on homelabs and self-hosted setups, and fully capable of taking down my own Kubernetes clusters. I run more things on Kubernetes than necessary.
+    BIO: `I build platforms and automate things. Somewhere along the way I decided self-hosted was the right call, and now I run more services on Kubernetes than I’d like to admit.
 
-Somewhere along the way, I fell into the Neovim trap and now there’s no way out.`,
+Fell into the Neovim trap. Still in there.
+
+If you’re reading this, the cluster is still up. I’m as surprised as you are.`,
     EXPERIENCES: `
 - **The Java Origins** (The Beginning)
-  - Started as a Backend Dev with **Spring Boot** my first true love. Occasionally forced to write HTML/CSS, which I can confirm is the worst thing in the world.
-  - Spent literal tears debugging a **15k-line PL/SQL package**. It was at this point I realized there had to be a better way to live.
+  - Started as a backend dev with **Spring Boot**. Got voluntold to write HTML/CSS. Spent a meaningful portion of my career debugging a **15k-line PL/SQL package**.
 - **The Container Awakening**
-  - Discovered the magic of containers and never looked back. 
-  - Naturally, I thought Kubernetes would be easy. I then spent three days wondering why **kind** wouldn't give me an external LoadBalancer IP. 
-- **The "Fancy DevOps" Pivot**
-  - Decided that being a "simple" (and admittedly bad) developer wasn't for me. I wanted to do the fancy DevOps thingy.
-  - Wrangled with **AWS** and **Azure**. I've made several managers mad by telling them "all clouds are the same anyway." I'm about **69% sure I'm right**.
-- **Platform Pretending** (Present)
-  - Currently busy pretending to be a **Platform Engineer**. I’m still not entirely sure what the title means, but I’m building "paved roads" so others don't have to suffer like I did.`,
+  - Discovered containers. Decided Kubernetes would be straightforward. Spent three days figuring out why **kind** wouldn’t hand out a LoadBalancer IP.
+- **The DevOps Pivot**
+  - Moved into platform work. Wrangled **AWS** and **Azure**. Told several managers all clouds are fundamentally the same. Still stand by it.
+- **Platform Engineering** (Present)
+  - Building paved roads so others don’t rediscover the same potholes. The title is vague but the work is real.`,
     RESEARCH_PHASE: `
-- **[Ceph]**: Trying to figure out if I actually need a petabyte of storage or if I just like the complexity.
-- **[eBPF]**: Deep diving into the kernel because normal networking was too easy.
-- **[Ollama]**: Running local LLMs because I don't trust the cloud with my bad code.
-- **[n8n]**: Automating the boring stuff so I can spend more time breaking things.
-- **[SPIFFE/SPIRE]**: Solving the "who are you and why are you talking to me" problem for my workloads.`,
+- **[Ceph]**: Determining whether I actually need distributed storage at this scale or just enjoy the operational complexity.
+- **[eBPF]**: Going deeper into the kernel because regular networking felt too solved.
+- **[llama.cpp]**: Running local LLMs. Mostly because I can.
+- **[n8n]**: Automating the things that stopped needing to be manual.
+- **[SPIFFE/SPIRE]**: Solving workload identity properly instead of throwing service account tokens at it.`,
     PET_PROJECTS: [
         {
+            id: "yk-talos-management",
+            title: "Talos Management Operator",
+            short: "A Kubernetes operator for Talos clusters. talosctl is for people with free time.",
+            description: "Manages the full lifecycle of Talos Linux clusters through CRDs — PKI, machine configs, node provisioning, etcd bootstrap, upgrades. The whole thing, declaratively.",
+            repo: "https://github.com/yuriy-kovalchuk/yk-talos-management"
+        },
+        {
             id: "yk-helm-update-checker",
-            title: "Helm Chart update checker",
-            short: "A little bot that keeps an eye on my charts so I don't have to.",
-            description: "I got tired of manually checking for updates, and I'm too lazy to configure Renovate",
+            title: "Helm Chart Update Checker",
+            short: "Tells me when my Helm charts are out of date so I don't have to check.",
+            description: "A small bot that watches Helm chart repositories and flags updates. Built because Renovate felt like overkill and manual checking felt like regression.",
             repo: "https://github.com/yuriy-kovalchuk/yk-helm-update-checker"
         },
         {
             id: "yk-dns-manager",
             title: "Kubernetes DNS Manager",
-            short: "Automate your DNS records because my Homelab is a mess",
-            description: "I was tired of manually updating records on my OPNSense every time I created a new HTTP route. This project manages my homelab DNS because if I have to do it more than twice, I'm writing a manager for it.",
+            short: "Manages homelab DNS so I don't have to touch OPNsense every time.",
+            description: "Watches Kubernetes HTTP routes and syncs DNS records automatically. Written after updating OPNsense manually for the third time in a week.",
             repo: "https://github.com/yuriy-kovalchuk/yk-dns-manager"
         },
         {
             id: "homelab",
             title: "Homelab",
-            short: "The never-ending story of my personal infrastructure.",
-            description: "This is the source of truth for my entire infrastructure. Don't try this at home. Aaaalways work in progress.",
+            short: "The source of truth for my home infrastructure. Perpetually in progress.",
+            description: "Everything running in my homelab, codified. The kind of project that's never finished, just temporarily stable.",
             repo: "https://github.com/yuriy-kovalchuk/Homelab"
         },
         {
             id: "yk-portfolio",
             title: "yk-portfolio",
-            short: "You are looking at it right now.",
-            description: "A minimalist, terminal-themed portfolio built with vanilla JS and CSS. No React, no Tailwind, just pure monospace vibes and Vim keybindings for those who live in the CLI.",
+            short: "You're looking at it.",
+            description: "A terminal-themed portfolio built with vanilla JS. No framework, no build step, Vim keybindings for the people who notice that sort of thing.",
             repo: "https://github.com/yuriy-kovalchuk/yk-portfolio"
         }
     ],

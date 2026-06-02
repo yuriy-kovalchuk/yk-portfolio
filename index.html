@@ -6,7 +6,7 @@
     <title>YK</title>
     
     <!-- Security: Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.shields.io; connect-src 'self' https://cdn.jsdelivr.net;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://img.shields.io; connect-src 'self' https://cdn.jsdelivr.net;">
 
     <!-- SEO & Social Media Meta Tags -->
     <meta name="description" content="Yuriy Kovalchuk - DevOps & Platform Engineer specializing in Kubernetes, GitOps, and Cloud Infrastructure.">
@@ -14,6 +14,10 @@
     <meta property="og:description" content="Infrastructure as Code, Kubernetes Orchestration, and Automated CI/CD Pipelines.">
     <meta property="og:type" content="website">
 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -38,11 +42,11 @@
                     <div style="margin-top: 10px;">
                         <label for="theme-select" style="font-size: 0.8em; opacity: 0.8;">COLOR_SCHEME:</label>
                         <select id="theme-select" class="theme-dropdown">
-                            <option value="amber">RETRO_AMBER</option>
-                            <option value="green">MATRIX_GREEN</option>
-                            <option value="cyan">COOL_CYAN</option>
-                            <option value="purple">CYBER_PURPLE</option>
-                            <option value="white" selected>MONO_WHITE</option>
+                            <option value="dracula" selected>DRACULA</option>
+                            <option value="nord">NORD</option>
+                            <option value="gruvbox">GRUVBOX</option>
+                            <option value="tokyo-night">TOKYO_NIGHT</option>
+                            <option value="rose-pine">ROSE_PINE</option>
                         </select>
                     </div>
                 </div>

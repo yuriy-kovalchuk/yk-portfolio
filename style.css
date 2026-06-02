@@ -5,46 +5,46 @@
     --text-dim: #888;
 }
 
-/* Default / White Theme */
-body, body[data-theme="white"] {
-    --primary-color: #FFFFFF;
-    --primary-shadow: rgba(255, 255, 255, 0.2);
-    --primary-faint: rgba(255, 255, 255, 0.05);
-    --primary-light: rgba(255, 255, 255, 0.1);
+
+body[data-theme="dracula"] {
+    --primary-color: #bd93f9;
+    --primary-shadow: rgba(189, 147, 249, 0.2);
+    --primary-faint: rgba(189, 147, 249, 0.05);
+    --primary-light: rgba(189, 147, 249, 0.1);
 }
 
-body[data-theme="amber"] {
-    --primary-color: #FFB000;
-    --primary-shadow: rgba(255, 176, 0, 0.2);
-    --primary-faint: rgba(255, 176, 0, 0.05);
-    --primary-light: rgba(255, 176, 0, 0.1);
+body[data-theme="nord"] {
+    --primary-color: #88c0d0;
+    --primary-shadow: rgba(136, 192, 208, 0.2);
+    --primary-faint: rgba(136, 192, 208, 0.05);
+    --primary-light: rgba(136, 192, 208, 0.1);
 }
 
-body[data-theme="green"] {
-    --primary-color: #4AF626;
-    --primary-shadow: rgba(74, 246, 38, 0.2);
-    --primary-faint: rgba(74, 246, 38, 0.05);
-    --primary-light: rgba(74, 246, 38, 0.1);
+body[data-theme="gruvbox"] {
+    --primary-color: #b8bb26;
+    --primary-shadow: rgba(184, 187, 38, 0.2);
+    --primary-faint: rgba(184, 187, 38, 0.05);
+    --primary-light: rgba(184, 187, 38, 0.1);
 }
 
-body[data-theme="cyan"] {
-    --primary-color: #00F2FF;
-    --primary-shadow: rgba(0, 242, 255, 0.2);
-    --primary-faint: rgba(0, 242, 255, 0.05);
-    --primary-light: rgba(0, 242, 255, 0.1);
+body[data-theme="tokyo-night"] {
+    --primary-color: #7aa2f7;
+    --primary-shadow: rgba(122, 162, 247, 0.2);
+    --primary-faint: rgba(122, 162, 247, 0.05);
+    --primary-light: rgba(122, 162, 247, 0.1);
 }
 
-body[data-theme="purple"] {
-    --primary-color: #D33682;
-    --primary-shadow: rgba(211, 54, 130, 0.2);
-    --primary-faint: rgba(211, 54, 130, 0.05);
-    --primary-light: rgba(211, 54, 130, 0.1);
+body[data-theme="rose-pine"] {
+    --primary-color: #ebbcba;
+    --primary-shadow: rgba(235, 188, 186, 0.2);
+    --primary-faint: rgba(235, 188, 186, 0.05);
+    --primary-light: rgba(235, 188, 186, 0.1);
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--primary-color);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
     padding: 20px;
     margin: 0;
     line-height: 1.8; /* Increased for better readability of monospace font */
@@ -110,7 +110,7 @@ a:focus-visible {
 
 a:hover {
     color: #fff;
-    text-shadow: 0 0 5px #fff;
+    text-shadow: 0 0 8px var(--primary-color);
 }
 
 .section {
@@ -192,7 +192,7 @@ li {
 
 .btn:hover, .back-btn:hover, #theme-switch:hover {
     background: var(--primary-color);
-    color: #000;
+    color: var(--bg-color);
     box-shadow: 0 0 10px var(--primary-color);
 }
 
@@ -218,7 +218,7 @@ li {
 
 .skill-tag:hover {
     background: var(--primary-color);
-    color: #000;
+    color: var(--bg-color);
 }
 
 .hint {

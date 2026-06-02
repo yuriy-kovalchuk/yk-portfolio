@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sections = PORTFOLIO_CONTENT;
 
         const themeSelect = document.getElementById('theme-select');
-        let currentTheme = localStorage.getItem('portfolio-theme') || 'white';
+        let currentTheme = localStorage.getItem('portfolio-theme') || 'dracula';
         
         const applyTheme = (theme) => {
             document.body.setAttribute('data-theme', theme);
