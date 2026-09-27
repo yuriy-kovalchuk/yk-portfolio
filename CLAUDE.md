@@ -3,15 +3,15 @@
 Static portfolio site served by Chainguard nginx.
 
 ## Stack
-- Pure HTML/CSS/JS — no build step
-- `cgr.dev/chainguard/nginx` — no shell, non-root, zero-CVE base image
+- Pure HTML/CSS/JS: no build step
+- `cgr.dev/chainguard/nginx`: no shell, non-root, zero-CVE base image
 - Deployed to Kubernetes, image hosted on GHCR
 
 ## Key files
-- `index.html`, `style.css`, `script.js`, `content.js` — site content
-- `assets/` — images and favicon
-- `nginx.conf` — server config (port 8080, gzip, security headers)
-- `Dockerfile` — pinned to digest, never use `latest` tag
+- `index.html`, `style.css`, `script.js`, `content.js`: site content
+- `assets/`: images and favicon
+- `nginx.conf`: server config (port 8080, gzip, security headers)
+- `Dockerfile`: pinned to digest, never use `latest` tag
 
 ## Local development
 ```bash

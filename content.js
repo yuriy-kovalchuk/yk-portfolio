@@ -29,8 +29,15 @@ If you’re reading this, the cluster is still up. I’m as surprised as you are
             id: "yk-talos-management",
             title: "Talos Management Operator",
             short: "A Kubernetes operator for Talos clusters. talosctl is for people with free time.",
-            description: "Manages the full lifecycle of Talos Linux clusters through CRDs — PKI, machine configs, node provisioning, etcd bootstrap, upgrades. The whole thing, declaratively.",
+            description: "Manages the full lifecycle of Talos Linux clusters through CRDs: PKI, machine configs, node provisioning, etcd bootstrap, upgrades. The whole thing, declaratively.",
             repo: "https://github.com/yuriy-kovalchuk/yk-talos-management"
+        },
+        {
+            id: "talos-monitoring",
+            title: "Talos Monitoring",
+            short: "A Prometheus exporter for Talos node health. No DaemonSet, no shell to install it in anyway.",
+            description: "One pod dials every node's Talos gRPC API directly to surface hardware, service, and boot-stage health as Prometheus metrics and an htmx dashboard. No privileged DaemonSet, nothing installed on the immutable OS.",
+            repo: "https://github.com/yuriy-kovalchuk/talos-monitoring"
         },
         {
             id: "yk-helm-update-checker",
