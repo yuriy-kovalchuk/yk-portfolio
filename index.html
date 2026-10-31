@@ -17,7 +17,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Nerd:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -29,18 +29,15 @@
 </head>
 <body>
     <div class="container">
-        <div id="status">> SYSTEM INITIALIZING...</div>
-
-        <header>
-            <div style="display: flex; align-items: center;">
+        <header class="header-card">
+            <div class="header-content">
                 <div id="profile-pic-container">
                     <!-- Profile Pic loaded here -->
                 </div>
                 <div class="profile-info">
                     <h1 id="name">[ LOADING_USER ]</h1>
-                    <p id="title" style="color: var(--primary-color);"></p>
-                    <div style="margin-top: 10px;">
-                        <label for="theme-select" style="font-size: 0.8em; opacity: 0.8;">COLOR_SCHEME:</label>
+                    <p id="title"></p>
+                    <div class="theme-selector">
                         <select id="theme-select" class="theme-dropdown">
                             <option value="dracula" selected>DRACULA</option>
                             <option value="nord">NORD</option>
@@ -49,11 +46,11 @@
                             <option value="rose-pine">ROSE_PINE</option>
                         </select>
                     </div>
+                    <div class="links">
+                        <a href="#" id="github-link" class="btn" target="_blank" rel="noopener noreferrer">GITHUB</a>
+                        <a href="#" id="linkedin-link" class="btn" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <a href="#" id="github-link" class="btn" target="_blank" rel="noopener noreferrer">GITHUB</a>
-                <a href="#" id="linkedin-link" class="btn" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
             </div>
         </header>
 
@@ -61,52 +58,52 @@
             <!-- Dashboard View -->
             <div id="dashboard-view">
                 <div class="main-col">
-                    <section class="section">
-                        <h2>// IDENTITY</h2>
+                    <div class="card">
+                        <h2>IDENTITY</h2>
                         <div id="bio-content">Loading...</div>
-                    </section>
+                    </div>
 
-                                    <section class="section">
-                                        <h2>// THE_JOURNEY</h2>
-                                        <div id="experiences-content">Loading...</div>
-                                    </section>
+                    <div class="card">
+                        <h2>THE_JOURNEY</h2>
+                        <div id="experiences-content">Loading...</div>
+                    </div>
                     
-                                    <section class="section">
-                                        <h2>// RESEARCH_PHASE</h2>
-                                        <div id="research-content">Loading...</div>
-                                    </section>
-                                </div>
+                    <div class="card">
+                        <h2>RESEARCH_PHASE</h2>
+                        <div id="research-content">Loading...</div>
+                    </div>
+                </div>
                 <div class="side-col">
-                    <section class="section">
-                        <h2>// MY_PLAYGROUND</h2>
+                    <div class="card">
+                        <h2>MY_PLAYGROUND</h2>
                         <div id="skills-content">Loading...</div>
-                    </section>
+                    </div>
 
-                    <section class="section">
-                        <h2>// SIDE_QUESTS</h2>
-                        <ul id="projects-list" style="list-style: none; padding: 0;">
+                    <div class="card">
+                        <h2>SIDE_QUESTS</h2>
+                        <ul id="projects-list">
                             <!-- Project links will be injected here -->
                         </ul>
-                    </section>
+                    </div>
                 </div>
             </div>
 
             <!-- Project Details View (Hidden by default) -->
             <div id="details-view" style="display: none;">
-                <button id="back-to-dashboard" class="back-btn">< CD ..</button>
-                <section class="section">
-                    <h2 id="detail-title">// PROJECT_TITLE</h2>
+                <button id="back-to-dashboard" class="btn">← BACK</button>
+                <div class="card">
+                    <h2 id="detail-title">PROJECT_TITLE</h2>
                     <div id="detail-content">Project description...</div>
-                    <div style="margin-top: 20px;">
-                        <a href="#" id="detail-repo-link" class="btn" target="_blank" rel="noopener noreferrer">VIEW_ON_GITHUB</a>
+                    <div class="card-actions">
+                        <a href="#" id="detail-repo-link" class="btn" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB</a>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
 
-        <footer style="margin-top: 50px; text-align: center; border-top: 1px solid #222; padding: 20px; font-size: 0.8em; color: #444;">
-            <p>TERMINAL_SESSION: ACTIVE | PORTFOLIO_V1.0.0</p>
-            <span class="hint">[ HINT: Use HJKL to navigate panels/sections, ENTER to select, H to go back ]</span>
+        <footer>
+            <p>yk-portfolio v1.0.0</p>
+            <span class="hint">[ HINT: Use HJKL to navigate, ENTER to select, H to go back ]</span>
         </footer>
     </div>
 

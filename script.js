@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const status = document.getElementById('status');
     const dashboardView = document.getElementById('dashboard-view');
     const detailsView = document.getElementById('details-view');
     
     try {
-        status.innerText = '> LOADING LOCAL_DATA...';
         const sections = PORTFOLIO_CONTENT;
 
         const themeSelect = document.getElementById('theme-select');
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.title = `${sections['PROFILE_NAME']} | Portfolio`;
         }
         if (sections['PROFILE_TITLE']) {
-            document.getElementById('title').innerText = `> ${sections['PROFILE_TITLE']}`;
+            document.getElementById('title').innerText = sections['PROFILE_TITLE'];
         }
         if (sections['PROFILE_PICTURE']) {
             const userName = sections['PROFILE_NAME'] || 'User';
@@ -108,9 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             backBtn.addEventListener('click', window.showDashboard);
         }
 
-        status.innerText = '> SYSTEM READY. SESSION_ACTIVE.';
-        status.style.color = 'var(--primary-color)';
-
         // Deep linking support
         const hash = window.location.hash;
         if (hash.startsWith('#project/')) {
@@ -123,8 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initVimNavigation();
 
     } catch (err) {
-        status.innerText = `> FATAL ERROR: ${err.message}`;
-        status.style.color = 'var(--primary-color)';
+        console.error('FATAL ERROR:', err.message);
     }
 });
 
@@ -133,7 +127,7 @@ window.showProject = function(id, pushState = true) {
     document.getElementById('details-view').style.display = 'block';
     const project = PORTFOLIO_CONTENT.PET_PROJECTS.find(p => p.id === id);
     if (project) {
-        document.getElementById('detail-title').innerText = `// PROJECT: ${project.title}`;
+        document.getElementById('detail-title').innerText = `PROJECT: ${project.title}`;
         if (typeof marked !== 'undefined') {
             const rawHtml = marked.parse(project.description);
             document.getElementById('detail-content').innerHTML = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(rawHtml) : rawHtml;
@@ -141,8 +135,6 @@ window.showProject = function(id, pushState = true) {
             document.getElementById('detail-content').innerText = project.description;
         }
         document.getElementById('detail-repo-link').href = project.repo;
-        document.getElementById('status').innerText = `> ACCESSING_FILE: ${id}.sh`;
-        document.getElementById('status').style.color = 'var(--primary-color)';
         
         if (pushState) {
             history.pushState({ view: 'project', projectId: id }, "", `#project/${id}`);
@@ -154,8 +146,6 @@ window.showProject = function(id, pushState = true) {
 window.showDashboard = function(pushState = true) {
     document.getElementById('dashboard-view').style.display = 'grid';
     document.getElementById('details-view').style.display = 'none';
-    document.getElementById('status').innerText = '> RETURNED_TO_HOME_DIR';
-    document.getElementById('status').style.color = 'var(--primary-color)';
     
     if (pushState) {
         history.pushState({ view: 'dashboard' }, "", " ");
@@ -183,8 +173,8 @@ function initVimNavigation() {
             return;
         }
 
-        const mainSections = Array.from(document.querySelectorAll('.main-col .section'));
-        const sideSections = Array.from(document.querySelectorAll('.side-col .section'));
+        const mainCards = Array.from(document.querySelectorAll('.main-col .card'));
+        const sideCards = Array.from(document.querySelectorAll('.side-col .card'));
         const projectItems = Array.from(document.querySelectorAll('.project-item'));
         
         // Horizontal Movement
@@ -196,12 +186,12 @@ function initVimNavigation() {
         // Vertical Movement
         else if (e.key === 'j') {
             if (currentPanel === 'main') {
-                mainIndex = Math.min(mainIndex + 1, mainSections.length - 1);
+                mainIndex = Math.min(mainIndex + 1, mainCards.length - 1);
             } else {
                 if (sideIndex === 1) {
                     projectSubIndex = Math.min(projectSubIndex + 1, projectItems.length - 1);
                 } else {
-                    sideIndex = Math.min(sideIndex + 1, sideSections.length - 1);
+                    sideIndex = Math.min(sideIndex + 1, sideCards.length - 1);
                 }
             }
         } else if (e.key === 'k') {
@@ -224,8 +214,8 @@ function initVimNavigation() {
                     if (link) link.click();
                 }
             } else {
-                const activeSection = currentPanel === 'main' ? mainSections[mainIndex] : sideSections[sideIndex];
-                const link = activeSection.querySelector('a');
+                const activeCard = currentPanel === 'main' ? mainCards[mainIndex] : sideCards[sideIndex];
+                const link = activeCard.querySelector('a');
                 if (link) link.click();
             }
             return;
@@ -233,11 +223,11 @@ function initVimNavigation() {
             return;
         }
 
-        [...mainSections, ...sideSections].forEach(s => s.classList.remove('focused'));
-        const targetSection = currentPanel === 'main' ? mainSections[mainIndex] : sideSections[sideIndex];
-        if (targetSection) {
-            targetSection.classList.add('focused');
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        [...mainCards, ...sideCards].forEach(c => c.classList.remove('focused'));
+        const targetCard = currentPanel === 'main' ? mainCards[mainIndex] : sideCards[sideIndex];
+        if (targetCard) {
+            targetCard.classList.add('focused');
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         // Apply sub-focus to projects
