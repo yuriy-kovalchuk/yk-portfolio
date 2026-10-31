@@ -61,11 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             for (const [category, skills] of Object.entries(sections['SKILLS_CATEGORIZED'])) {
                 const catTitle = document.createElement('div');
-                catTitle.style.cssText = 'font-size: 0.8em; color: #888; margin-top: 10px; margin-bottom: 5px; text-transform: uppercase;';
+                catTitle.className = 'skill-category-title';
                 catTitle.innerText = `[ ${category} ]`;
                 container.appendChild(catTitle);
 
                 const skillGroup = document.createElement('div');
+                skillGroup.className = 'skill-tags';
                 skills.forEach(skill => {
                     const span = document.createElement('span');
                     span.className = 'skill-tag';
@@ -78,20 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (sections['PET_PROJECTS']) {
             const list = document.getElementById('projects-list');
+            list.className = 'projects-list';
             list.innerHTML = '';
             sections['PET_PROJECTS'].forEach(project => {
                 const li = document.createElement('li');
                 li.className = 'project-item';
-                li.style.marginBottom = '15px';
-                li.style.padding = '5px';
                 li.innerHTML = `
-                    <a href="#" class="project-link" data-id="${project.id}" style="font-weight: bold;">[ ${project.title} ]</a>
-                    <p style="font-size: 0.85em; margin: 5px 0 0 0; color: #888;">${project.short}</p>
+                    <a href="#" class="project-link" data-id="${project.id}">${project.title}</a>
+                    <p class="project-short">${project.short}</p>
                 `;
                 list.appendChild(li);
             });
 
-            // Add event listeners to project links
             list.querySelectorAll('.project-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -100,11 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Add event listener for back button
-        const backBtn = document.getElementById('back-to-dashboard');
-        if (backBtn) {
-            backBtn.addEventListener('click', window.showDashboard);
-        }
+        document.getElementById('back-to-dashboard').addEventListener('click', window.showDashboard);
 
         // Deep linking support
         const hash = window.location.hash;
@@ -123,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.showProject = function(id, pushState = true) {
-    document.getElementById('dashboard-view').style.display = 'none';
-    document.getElementById('details-view').style.display = 'block';
+    dashboardView.style.display = 'none';
+    detailsView.style.display = 'block';
     const project = PORTFOLIO_CONTENT.PET_PROJECTS.find(p => p.id === id);
     if (project) {
         document.getElementById('detail-title').innerText = `PROJECT: ${project.title}`;
@@ -144,15 +139,14 @@ window.showProject = function(id, pushState = true) {
 }
 
 window.showDashboard = function(pushState = true) {
-    document.getElementById('dashboard-view').style.display = 'grid';
-    document.getElementById('details-view').style.display = 'none';
+    dashboardView.style.display = 'grid';
+    detailsView.style.display = 'none';
     
     if (pushState) {
         history.pushState({ view: 'dashboard' }, "", " ");
     }
 }
 
-// Handle Browser Back/Forward buttons
 window.addEventListener('popstate', (event) => {
     if (event.state && event.state.view === 'project') {
         window.showProject(event.state.projectId, false);
@@ -162,36 +156,34 @@ window.addEventListener('popstate', (event) => {
 });
 
 function initVimNavigation() {
-    let currentPanel = 'main'; // 'main' or 'side'
+    let currentPanel = 'main';
     let mainIndex = 0;
     let sideIndex = 0;
     let projectSubIndex = 0;
     
     document.addEventListener('keydown', (e) => {
-        if (document.getElementById('details-view').style.display === 'block') {
+        if (detailsView.style.display === 'block') {
             if (e.key === 'h' || e.key === 'Escape') showDashboard();
             return;
         }
 
-        const mainCards = Array.from(document.querySelectorAll('.main-col .card'));
-        const sideCards = Array.from(document.querySelectorAll('.side-col .card'));
+        const mainSections = Array.from(document.querySelectorAll('.main-col .section'));
+        const sideSections = Array.from(document.querySelectorAll('.side-col .section'));
         const projectItems = Array.from(document.querySelectorAll('.project-item'));
         
-        // Horizontal Movement
         if (e.key === 'l') {
             currentPanel = 'side';
         } else if (e.key === 'h') {
             currentPanel = 'main';
         } 
-        // Vertical Movement
         else if (e.key === 'j') {
             if (currentPanel === 'main') {
-                mainIndex = Math.min(mainIndex + 1, mainCards.length - 1);
+                mainIndex = Math.min(mainIndex + 1, mainSections.length - 1);
             } else {
                 if (sideIndex === 1) {
                     projectSubIndex = Math.min(projectSubIndex + 1, projectItems.length - 1);
                 } else {
-                    sideIndex = Math.min(sideIndex + 1, sideCards.length - 1);
+                    sideIndex = Math.min(sideIndex + 1, sideSections.length - 1);
                 }
             }
         } else if (e.key === 'k') {
@@ -214,8 +206,8 @@ function initVimNavigation() {
                     if (link) link.click();
                 }
             } else {
-                const activeCard = currentPanel === 'main' ? mainCards[mainIndex] : sideCards[sideIndex];
-                const link = activeCard.querySelector('a');
+                const activeSection = currentPanel === 'main' ? mainSections[mainIndex] : sideSections[sideIndex];
+                const link = activeSection.querySelector('a');
                 if (link) link.click();
             }
             return;
@@ -223,14 +215,13 @@ function initVimNavigation() {
             return;
         }
 
-        [...mainCards, ...sideCards].forEach(c => c.classList.remove('focused'));
-        const targetCard = currentPanel === 'main' ? mainCards[mainIndex] : sideCards[sideIndex];
-        if (targetCard) {
-            targetCard.classList.add('focused');
-            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        [...mainSections, ...sideSections].forEach(s => s.classList.remove('focused'));
+        const targetSection = currentPanel === 'main' ? mainSections[mainIndex] : sideSections[sideIndex];
+        if (targetSection) {
+            targetSection.classList.add('focused');
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // Apply sub-focus to projects
         projectItems.forEach((item, idx) => {
             if (currentPanel === 'side' && sideIndex === 1 && idx === projectSubIndex) {
                 item.classList.add('sub-focused');

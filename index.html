@@ -14,7 +14,6 @@
     <meta property="og:description" content="Infrastructure as Code, Kubernetes Orchestration, and Automated CI/CD Pipelines.">
     <meta property="og:type" content="website">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Nerd:wght@400;700&display=swap" rel="stylesheet">
@@ -29,14 +28,17 @@
 </head>
 <body>
     <div class="container">
-        <header class="header-card">
-            <div class="header-content">
-                <div id="profile-pic-container">
-                    <!-- Profile Pic loaded here -->
-                </div>
-                <div class="profile-info">
-                    <h1 id="name">[ LOADING_USER ]</h1>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div id="profile-pic-container"></div>
+                <div class="hero-text">
+                    <h1 id="name"></h1>
                     <p id="title"></p>
+                    <div class="hero-links">
+                        <a href="#" id="github-link" class="btn">GITHUB</a>
+                        <a href="#" id="linkedin-link" class="btn">LINKEDIN</a>
+                    </div>
                     <div class="theme-selector">
                         <select id="theme-select" class="theme-dropdown">
                             <option value="dracula" selected>DRACULA</option>
@@ -46,58 +48,53 @@
                             <option value="rose-pine">ROSE_PINE</option>
                         </select>
                     </div>
-                    <div class="links">
-                        <a href="#" id="github-link" class="btn" target="_blank" rel="noopener noreferrer">GITHUB</a>
-                        <a href="#" id="linkedin-link" class="btn" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-                    </div>
                 </div>
             </div>
-        </header>
+        </section>
 
+        <!-- Main Content -->
         <div id="content-area">
             <!-- Dashboard View -->
             <div id="dashboard-view">
                 <div class="main-col">
-                    <div class="card">
+                    <section class="section">
                         <h2>IDENTITY</h2>
-                        <div id="bio-content">Loading...</div>
-                    </div>
+                        <div id="bio-content"></div>
+                    </section>
 
-                    <div class="card">
+                    <section class="section">
                         <h2>THE_JOURNEY</h2>
-                        <div id="experiences-content">Loading...</div>
-                    </div>
+                        <div id="experiences-content"></div>
+                    </section>
                     
-                    <div class="card">
+                    <section class="section">
                         <h2>RESEARCH_PHASE</h2>
-                        <div id="research-content">Loading...</div>
-                    </div>
+                        <div id="research-content"></div>
+                    </section>
                 </div>
                 <div class="side-col">
-                    <div class="card">
+                    <section class="section">
                         <h2>MY_PLAYGROUND</h2>
-                        <div id="skills-content">Loading...</div>
-                    </div>
+                        <div id="skills-content"></div>
+                    </section>
 
-                    <div class="card">
+                    <section class="section">
                         <h2>SIDE_QUESTS</h2>
-                        <ul id="projects-list">
-                            <!-- Project links will be injected here -->
-                        </ul>
-                    </div>
+                        <ul id="projects-list"></ul>
+                    </section>
                 </div>
             </div>
 
-            <!-- Project Details View (Hidden by default) -->
+            <!-- Project Details View -->
             <div id="details-view" style="display: none;">
                 <button id="back-to-dashboard" class="btn">← BACK</button>
-                <div class="card">
-                    <h2 id="detail-title">PROJECT_TITLE</h2>
-                    <div id="detail-content">Project description...</div>
-                    <div class="card-actions">
-                        <a href="#" id="detail-repo-link" class="btn" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB</a>
+                <section class="section">
+                    <h2 id="detail-title"></h2>
+                    <div id="detail-content"></div>
+                    <div class="section-actions">
+                        <a href="#" id="detail-repo-link" class="btn">VIEW ON GITHUB</a>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
 
