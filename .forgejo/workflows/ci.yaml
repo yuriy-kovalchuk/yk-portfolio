@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  docker:
+    name: Docker Build & Scan
+    runs-on: [docker]
+    steps:
+      - name: Checkout
+        uses: https://data.forgejo.org/actions/checkout@v7
+
+      - name: Build image
+        uses: https://data.forgejo.org/actions/docker/build-push-action@v7
+        with:
+          context: .
+          push: false
+          load: true
+          tags: yk-portfolio:ci
+
+      - name: Scan image
+        uses: https://data.forgejo.org/actions/aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: yk-portfolio:ci
+          format: sarif
+          output: trivy-image.sarif
+          severity: CRITICAL,HIGH,MEDIUM,LOW
