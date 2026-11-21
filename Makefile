@@ -30,7 +30,7 @@ site:
 
 ## test: render the site, then check what was produced
 test: site
-	node --test tests/
+	node --test "tests/*.test.mjs"
 
 ## scan: build the image, then fail on fixable HIGH or CRITICAL vulnerabilities, as CI does
 scan: build
