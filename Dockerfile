@@ -11,7 +11,7 @@ WORKDIR /project
 COPY --chown=1000:1000 . .
 RUN hugo --gc --minify --destination /project/public
 
-FROM cgr.dev/chainguard/nginx:latest@sha256:16d0e55ffe62f55744d9b903d8eb57e533d0f660332a9fbb967d78b4e77c8bdb
+FROM cgr.dev/chainguard/nginx:latest@sha256:c1642395cc75f39c931d66d939f7e78cbdf671d6cfd821616632b0639c3c6d63
 # Replace the base image's own server block rather than adding a second one: it
 # also listens on 8080 with server_name localhost, so it would answer every
 # request addressed to localhost without the headers configured here.
