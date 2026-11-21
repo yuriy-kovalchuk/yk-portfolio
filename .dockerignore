@@ -1,5 +1,14 @@
 .git
 .github
-.DS_Store
+.forgejo
+.claude
+**/.DS_Store
+.hugo_build.lock
+public
+resources/_gen
+tests
+node_modules
 Makefile
-*.md
+README.md
+CLAUDE.md
+.ykode

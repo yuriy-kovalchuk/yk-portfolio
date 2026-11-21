@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := site.Title }}
+{{- if eq .Kind "404" }}{{ $title = printf "Page not found · %s" site.Title }}{{ end }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ site.Params.description }}">
+{{- if eq .Kind "404" }}
+<meta name="robots" content="noindex">
+{{- end }}
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ site.Params.description }}">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f9fb">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d1015">
+<link rel="icon" href="{{ "img/favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="preload" href="{{ "font/roboto-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- $css := resources.Get "css/site.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- $theme := resources.Get "js/theme.js" | minify | fingerprint }}
+<script src="{{ $theme.RelPermalink }}" integrity="{{ $theme.Data.Integrity }}"></script>
+</head>
+<body id="top">
+{{ partial "icon-sprite.html" . }}
+<a class="skip-link" href="#main">Skip to content</a>
+{{ $profile := hugo.Data.portfolio.profile }}
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="topbar__name" href="{{ "/" | relURL }}#top">{{ $profile.name }}</a>
+    {{ if .IsHome }}
+    <nav class="topbar__nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    {{ end }}
+    {{ partial "theme-control.html" . }}
+  </div>
+</header>
+<main id="main" class="page" tabindex="-1">
+{{ block "main" . }}{{ end }}
+</main>
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© {{ now.Year }} {{ $profile.name }}</p>
+    <ul class="footer__links" role="list">
+      <li><a href="{{ $profile.github }}" rel="me noopener">GitHub</a></li>
+      <li><a href="{{ $profile.linkedin }}" rel="me noopener">LinkedIn</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+# Everything the page says. Sourced from the CV (yk-cv) and the project repositories;
+# no contact detail beyond GitHub and LinkedIn is published on purpose.
+profile:
+  name: Yuriy Kovalchuk
+  role: Platform Engineer
+  tagline: I build and operate Kubernetes platforms, and the tools that make them easier to run.
+  photo: /img/me.jpeg
+  github: https://github.com/yuriy-kovalchuk
+  linkedin: https://www.linkedin.com/in/yuriy-kovalchuk/
+
+about:
+  - Platform Engineer with a backend engineering background in Java and Spring Boot, and more than eight years of experience building and operating Kubernetes platforms in financial services, with a strong focus on Azure and GitOps.
+  - My work centres on infrastructure as code, automated delivery pipelines and developer self-service, so that development teams can ship faster with less operational overhead.
+  - Outside of client work I run a self-hosted Kubernetes environment on bare metal, and build the open-source tools it needs. The projects below come from it.
+
+languages: Italian (bilingual) · English (professional)
+
+experience:
+  - role: Platform Engineer
+    company: Swisscard AECS GmbH
+    via: Fincons Group
+    period: Jul 2025 – present
+    points:
+      - Member of the platform team responsible for the company's central platform, with Azure managed as code in Terraform and Kubernetes as the shared container platform for all internal teams.
+      - Contribute to the umbrella Helm chart framework that standardises configuration, networking and policy defaults, so teams can deploy to the platform self-service.
+      - Operate cross-cutting platform tooling, including admission policy, GitOps delivery and the observability stack, and take part in the migration from Ingress to the Gateway API.
+
+  - role: DevOps & Cloud Engineer
+    company: Swiss Re
+    via: Fincons Group
+    period: Jan 2023 – Jun 2025
+    points:
+      - Managed and evolved the Azure DevOps pipelines for the services of SwiftRe, a reinsurance platform, reducing manual release effort and increasing deployment frequency.
+      - Managed the Azure production infrastructure as code with Terraform, with a focus on scalability, high availability and security, and owned its repositories, reviews and documentation.
+      - Implemented monitoring and alerting for early incident detection, and introduced auto-scaling, load balancing and disaster recovery strategies.
+
+  - role: Software & DevOps Engineer
+    company: NTT DATA Italia
+    period: Nov 2017 – Dec 2022
+    points:
+      - Progressed from backend development to DevOps across three client engagements in data services and telecommunications.
+      - Designed a web portal to manage SELinux policies across a large server fleet, replacing a licensed commercial product with open source, and owned its backend, database, infrastructure and CI/CD.
+      - Built self-service development environments with ephemeral, isolated databases, and the backend of a B2B company-data marketplace.
+
+projects:
+  - title: Talos Management Operator
+    description: A Kubernetes operator that manages the full lifecycle of Talos Linux clusters through custom resources, covering PKI, machine configuration, node provisioning, etcd bootstrap and upgrades.
+    stack: [Go, Kubernetes, Talos Linux, Helm]
+    url: https://github.com/yuriy-kovalchuk/yk-talos-management
+
+  - title: Talos Monitoring
+    description: A Prometheus exporter for Talos Linux node health. One pod reads hardware, service and boot-stage health from each node's Talos API, with no privileged DaemonSet and nothing installed on the immutable OS.
+    stack: [Go, Prometheus, Grafana, Talos API]
+    url: https://github.com/yuriy-kovalchuk/talos-monitoring
+
+  - title: ykode
+    description: An experimental terminal coding agent for locally hosted language models, written in Go as a learning project and released as a single signed binary.
+    stack: [Go, llama.cpp, Bubble Tea]
+    url: https://github.com/yuriy-kovalchuk/ykode
+
+  - title: Kubernetes DNS Manager
+    description: A controller that watches Gateway API HTTPRoutes and keeps DNS records in sync on a pluggable backend, removing manual DNS changes for every exposed service.
+    stack: [Go, Gateway API, OPNsense, Prometheus]
+    url: https://github.com/yuriy-kovalchuk/yk-dns-manager
+
+  - title: Update Checker
+    description: Scans GitOps repositories for outdated Helm charts, Flux HelmReleases, container images and Dockerfile base images, and reports them as Kubernetes resources, a dashboard and Prometheus metrics.
+    stack: [Go, Flux, Helm, Prometheus]
+    url: https://github.com/yuriy-kovalchuk/yk-update-checker
+
+  - title: Homelab
+    description: A bare-metal environment defined as code. Two Proxmox hosts, an OPNsense router, TrueNAS storage and a five-node Talos Kubernetes cluster, delivered through Flux.
+    stack: [Talos Linux, Flux, Cilium, Proxmox]
+    url: https://github.com/yuriy-kovalchuk/Homelab
+
+skills:
+  - group: Cloud & containers
+    items: [Azure, AKS, Kubernetes, Docker, Talos Linux, Proxmox]
+  - group: Infrastructure as code
+    items: [Terraform, Ansible, Packer, Helm, Kustomize]
+  - group: CI/CD & GitOps
+    items: [Azure DevOps, GitLab CI, GitHub Actions, Flux, Argo CD]
+  - group: Networking & security
+    items: [Cilium, Gateway API, OPNsense, Vault, Kyverno]
+  - group: Observability
+    items: [Prometheus, Grafana, Loki, Alloy, Azure App Insights]
+  - group: Languages
+    items: [Go, Java, Spring Boot, Python, Bash, SQL]
+
+exploring: [Ceph, eBPF, SPIFFE/SPIRE, llama.cpp, n8n]

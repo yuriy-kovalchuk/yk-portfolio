@@ -5,6 +5,28 @@ on:
     branches: [master]
 
 jobs:
+  site:
+    name: Render and test the site
+    runs-on: [docker]
+    steps:
+      - name: Checkout
+        uses: https://data.forgejo.org/actions/checkout@v7
+
+      # The tests use fs.globSync, which needs Node 22 or newer.
+      - name: Set up Node
+        uses: https://data.forgejo.org/actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Render the site
+        run: |
+          docker run --rm -v "$PWD:/project" -u "$(id -u):$(id -g)" \
+            -e HOME=/tmp -e HUGO_CACHEDIR=/tmp/hugo-cache ghcr.io/gohugoio/hugo:v0.169.0@sha256:a146e0639230bbc73358e6563240f0a6103466f0390b80a457c775068ec802a9 \
+            --gc --cleanDestinationDir --destination /project/public
+
+      - name: Test the rendered site
+        run: node --test tests/
+
   docker:
     name: Docker Build & Scan
     runs-on: [docker]
@@ -20,10 +42,12 @@ jobs:
           load: true
           tags: yk-portfolio:ci
 
+      # A HIGH or CRITICAL finding with a fix available fails the build: a newer base digest clears it.
       - name: Scan image
-        uses: https://data.forgejo.org/actions/aquasecurity/trivy-action@v0.36.0
+        uses: https://data.forgejo.org/actions/aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: yk-portfolio:ci
-          format: sarif
-          output: trivy-image.sarif
-          severity: CRITICAL,HIGH,MEDIUM,LOW
+          format: table
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: '1'

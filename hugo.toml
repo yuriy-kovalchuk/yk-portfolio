@@ -1,0 +1,18 @@
+baseURL = "/"
+locale = "en-gb"
+title = "Yuriy Kovalchuk · Platform Engineer"
+defaultContentLanguage = "en"
+timeZone = "UTC"
+
+# One page and a not-found page. baseURL is "/" so the image works under any hostname;
+# RSS and sitemaps need absolute URLs, so they are not generated rather than generated wrong.
+disableKinds = ["taxonomy", "term", "rss", "sitemap", "section", "page"]
+enableRobotsTXT = true
+# The page should not say what produced it, let alone which version.
+disableHugoGeneratorInject = true
+
+[params]
+  description = "Yuriy Kovalchuk, Platform Engineer. Kubernetes platforms, GitOps and the open-source tools that support them."
+
+[markup.goldmark.renderer]
+  unsafe = false

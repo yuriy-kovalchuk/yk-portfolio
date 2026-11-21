@@ -1,0 +1,14 @@
+<form class="segmented" data-theme-form hidden>
+  <fieldset class="segmented__options">
+    <legend class="visually-hidden">Appearance</legend>
+    <label class="segmented__option" title="Follow the system">
+      <input type="radio" name="theme" value="system">{{ partial "icon.html" "monitor" }}<span class="visually-hidden">System</span>
+    </label>
+    <label class="segmented__option" title="Light">
+      <input type="radio" name="theme" value="light">{{ partial "icon.html" "sun" }}<span class="visually-hidden">Light</span>
+    </label>
+    <label class="segmented__option" title="Dark">
+      <input type="radio" name="theme" value="dark">{{ partial "icon.html" "moon" }}<span class="visually-hidden">Dark</span>
+    </label>
+  </fieldset>
+</form>

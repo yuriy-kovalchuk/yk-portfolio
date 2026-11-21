@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{ $data := hugo.Data.portfolio }}
+<section class="hero" aria-labelledby="name">
+  <img class="hero__photo" src="{{ $data.profile.photo | relURL }}" alt="Portrait of {{ $data.profile.name }}" width="200" height="200" decoding="async">
+  <div class="hero__text">
+    <h1 class="hero__name" id="name">{{ $data.profile.name }}</h1>
+    <p class="hero__role">{{ $data.profile.role }}</p>
+    <p class="hero__tagline">{{ $data.profile.tagline }}</p>
+    <ul class="hero__links" role="list">
+      <li><a class="btn" href="{{ $data.profile.github }}" rel="me noopener">{{ partial "icon.html" "github" }}GitHub</a></li>
+      <li><a class="btn" href="{{ $data.profile.linkedin }}" rel="me noopener">{{ partial "icon.html" "linkedin" }}LinkedIn</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="about" aria-labelledby="about-title">
+  <h2 class="section__title" id="about-title">About</h2>
+  <div class="prose">
+    {{ range $data.about }}<p>{{ . }}</p>{{ end }}
+  </div>
+  <p class="meta"><span class="meta__label">Languages</span> {{ $data.languages }}</p>
+</section>
+
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <h2 class="section__title" id="experience-title">Experience</h2>
+  <ol class="jobs" role="list">
+    {{ range $data.experience }}
+    <li class="job">
+      <p class="job__period">{{ .period }}</p>
+      <div class="job__body">
+        <h3 class="job__role">{{ .role }}</h3>
+        <p class="job__company">{{ .company }}{{ with .via }} <span class="job__via">· via {{ . }}</span>{{ end }}</p>
+        <ul class="job__points">
+          {{ range .points }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+    </li>
+    {{ end }}
+  </ol>
+</section>
+
+<section class="section" id="projects" aria-labelledby="projects-title">
+  <h2 class="section__title" id="projects-title">Projects</h2>
+  <p class="section__lead">Open-source tools I design and run in my own environment.</p>
+  <ul class="projects" role="list">
+    {{ range $data.projects }}
+    <li class="project">
+      <h3 class="project__title"><a href="{{ .url }}" rel="noopener">{{ .title }}</a></h3>
+      <p class="project__text">{{ .description }}</p>
+      {{ partial "chips.html" .stack }}
+      <span class="project__go" aria-hidden="true">View on GitHub {{ partial "icon.html" "external" }}</span>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+
+<section class="section" id="skills" aria-labelledby="skills-title">
+  <h2 class="section__title" id="skills-title">Skills</h2>
+  <dl class="skills">
+    {{ range $data.skills }}
+    <div class="skills__row">
+      <dt>{{ .group }}</dt>
+      <dd>{{ partial "chips.html" .items }}</dd>
+    </div>
+    {{ end }}
+    <div class="skills__row">
+      <dt>Currently exploring</dt>
+      <dd>{{ partial "chips.html" $data.exploring }}</dd>
+    </div>
+  </dl>
+</section>
+{{ end }}
